@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Header from "./components/Header";
-import Restaurants from "./components/Restaurants";
-import Offers from "./components/routes/Offer";
-import Error from "./components/routes/Error";
-import Help from "./components/routes/Help";
-import Cart from "./components/routes/Cart";
+import Header from "./src/components/Header";
+import Restaurants from "./src/components/Restaurants";
+import Offers from "./src/components/routes/Offer";
+import Error from "./src/components/routes/Error";
+import Help from "./src/components/routes/Help";
+import Cart from "./src/components/routes/Cart";
 
-import RestaurantInfoSection from "./components/routes/RestaurantInfoSection";
+import RestaurantInfoSection from "./src/components/routes/RestaurantInfoSection";
 
 const AppLayout = () => (
   <div>
@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "restaurant",
+        path: "restaurant/:resId",
         element: <RestaurantInfoSection />,
       },
     ],

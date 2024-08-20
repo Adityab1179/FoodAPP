@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import RestaurantCards from "./RestaurantCards";
 import Shimmer from "./Shimmer";
 import BannerSection from "./Bannersection";
-import useRestaurant from "../utils/useRestaurant";
 import { Link } from "react-router-dom";
 
 const Restaurants = () => {
-  const [restdata, setRestdata] = useState([]);
-  const [filteredrest, setFilteredRest] = useState([]);
+  const [restdata, setRestdata] = useState([]); // Initialize as an empty array
+  const [filteredrest, setFilteredRest] = useState([]); // Initialize as an empty array
   const [searchbox, setSearchbox] = useState('');
 
   const Ratingfilter = () => {
@@ -30,7 +29,9 @@ const Restaurants = () => {
     );
 
     const json = await data.json();
-    const restaurants =useRestaurant()
+    const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants || [];
+    console.log(restaurants)
+    console.log(json)
     setRestdata(restaurants);
     setFilteredRest(restaurants);
   };
@@ -71,7 +72,9 @@ const Restaurants = () => {
       ) : (
         <div className="restaurants-section">
           {filteredrest.map((restaurant) => (
-            <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestaurantCards  resdata={restaurant} /></Link>
+            <Link key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}>
+              <RestaurantCards resdata={restaurant} />
+            </Link>
           ))}
         </div>
       )}

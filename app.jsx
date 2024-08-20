@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import Header from "./src/components/Header";
-import Restaurants from "./src/components/Restaurants";
-import Offers from "./src/components/routes/Offer";
-import Error from "./src/components/routes/Error";
-import Help from "./src/components/routes/Help";
-import Cart from "./src/components/routes/Cart";
-
-import RestaurantInfoSection from "./src/components/routes/RestaurantInfoSection";
+import Header from "./src/components/Header"; // Correct path
+import Restaurants from "./src/components/Restaurants"; // Correct path
+import Offers from "./src/components/routes/Offer"; // Correct path
+import Error from "./src/components/routes/Error"; // Correct path
+import Help from "./src/components/routes/Help"; // Correct path
+import Cart from "./src/components/routes/Cart"; // Correct path
+import RestaurantInfoSection from "./src/components/routes/RestaurantInfoSection"; // Correct path
 
 const AppLayout = () => (
   <div>

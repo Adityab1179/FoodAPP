@@ -1,12 +1,12 @@
-import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
   faPercent,
   faHandHoldingHand,
   faUser,
   faShoppingCart,
-} from "../../node_modules/@fortawesome/free-solid-svg-icons";
-import Applogo from "../components/Applogo";
+} from "@fortawesome/free-solid-svg-icons";
+import Applogo from "./Applogo";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 const Header = () => {

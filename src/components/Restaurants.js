@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import RestaurantCards from "./RestaurantCards";
 import Shimmer from "./Shimmer";
 import BannerSection from "./Bannersection";
+import useRestaurant from "../utils/useRestaurant";
 import { Link } from "react-router-dom";
 
 const Restaurants = () => {
@@ -29,7 +30,7 @@ const Restaurants = () => {
     );
 
     const json = await data.json();
-    const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+    const restaurants =useRestaurant()
     setRestdata(restaurants);
     setFilteredRest(restaurants);
   };

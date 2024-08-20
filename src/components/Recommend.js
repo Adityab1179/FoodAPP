@@ -2,6 +2,7 @@ import React from "react";
 import { CDN_URL } from "../utils/constants";
 import downloadImage from "../utils/mockImages/download.png";
 const Recommended = ({ item }) => {
+ 
   return (
     <div className="Rest-items">
     <div className="item-left">

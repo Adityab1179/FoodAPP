@@ -2,46 +2,48 @@ import RestInfo from "../RestInfo";
 import DealSection from "../DealSection";
 import Topicksection from "../Topicksection";
 import Recommended from "../Recommend";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Shimmer from "../Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../../utils/constants";
 
 const RestaurantInfoSection = () => {
-
   const [restInfo, setRestInfo] = useState(null);
   const [dealsInfo, setDealsInfo] = useState([]);
   const [topicks, setTopicks] = useState([]);
-  const [recommendedHeading, setRecommendedHeading] = useState("");
-  const [recommended, setRecommended] = useState([]);
-  const {resId}=useParams()
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const [recommendedHeading1, setRecommendedHeading1] = useState("");
+  const [recommendedHeading2, setRecommendedHeading2] = useState("");
+  const [recommended1, setRecommended1] = useState([]);
+  const [recommended2, setRecommended2] = useState([]);
+  const { resId } = useParams();
 
   const fetchData = async () => {
-    const response = await fetch(
-      MENU_API+resId
-    );
-    const json = await response.json();
-    setRestInfo(json?.data?.cards?.[2]);
-    setDealsInfo(
-      json?.data?.cards?.[3]?.card?.card?.gridElements?.infoWithStyle?.offers ||
-        []
-    );
-    setTopicks(
-      json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]
-        ?.card?.card?.carousel || []
-    );
-    setRecommended(
-      json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]
-        ?.card?.card?.itemCards || []
-    );
-    setRecommendedHeading(
-      json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]
-        ?.card?.card?.title
-    );
-  };
+      const response = await fetch(MENU_API + resId);
+      const json = await response.json();
+      setRestInfo(json?.data?.cards?.[2]);
+      setDealsInfo(
+        json?.data?.cards?.[3]?.card?.card?.gridElements?.infoWithStyle?.offers || []
+      );
+      setTopicks(
+        json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.carousel || []
+      );
+      setRecommended1(
+        json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.itemCards || []
+      );
+      setRecommendedHeading1(
+        json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card?.title || ""
+      );
+      setRecommended2(
+        json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.itemCards || []
+      );
+      setRecommendedHeading2(
+        json?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card?.card?.title || ""
+      );
+    }
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   if (restInfo === null) return <Shimmer />;
 
@@ -62,11 +64,14 @@ const RestaurantInfoSection = () => {
       </div>
       <div className="recommended">
         <details open>
-          <summary>{recommendedHeading}</summary>
-          {recommended.map((item) => (
+          <summary>{recommendedHeading1=="Recommended"? recommendedHeading1:recommendedHeading2}</summary>
+          {recommended1.map((item) => (
             <Recommended key={item.card.info.id} item={item} />
           ))}
-        </details>
+          {recommended2.map((item) => (
+            <Recommended key={item.card.info.id} item={item} />
+          ))}
+            </details>
       </div>
     </div>
   );

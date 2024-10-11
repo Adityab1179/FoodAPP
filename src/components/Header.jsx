@@ -9,6 +9,7 @@ import {
 import Applogo from "./Applogo";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [loginbtn, setloginbtn] = useState("login");
   const toggleLogin = () => {
@@ -17,10 +18,14 @@ const Header = () => {
     );
   };
 
+  const online=useOnlineStatus();
   return (
-    <nav className="nav">
+    <nav className="h-24 flex justify-between items-center px-6 shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
       <Applogo />
-      <ul className="nav-links">
+      <ul className="flex gap-4 items-center text-xl">
+        <li>
+          Online status:{online? "✔":"❌"}
+        </li>
       <li>
           <Link to={"/"}>
             <FontAwesomeIcon icon={faPercent} className="icon" />

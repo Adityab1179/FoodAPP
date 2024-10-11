@@ -1,4 +1,4 @@
-import download from '../utils/mockImages/download.png'
+import download from "../utils/mockImages/download.png";
 const RestInfo = (props) => {
   const {
     name,
@@ -9,16 +9,18 @@ const RestInfo = (props) => {
     cuisines,
   } = props.restdata.card.card.info;
   return (
-    <div className="RestInfo">
-      <h1>{name}</h1>
-      <div className="RestRating">
-        <img src={download} className='RatingImg'></img>
-        <p>{avgRating}</p>
-        <p>({totalRatingsString})</p>
-        <p>{costForTwoMessage}</p>
+    <div className="w-full font-figtree">
+      <h1 className="font-bold text-3xl">{name}</h1>
+      <div className="border-2 border-black w-full h-36 p-3">
+        <div className="flex gap-3 font-bold text-xl">
+          <img src={download} className="h-5"></img>
+          <p  >{avgRating}</p>
+          <p>({totalRatingsString})</p>
+          <p>{costForTwoMessage}</p>
+        </div>
+        <a href="#" className="underline text-red-600 font-bold"><p>{cuisines.join(",")}</p></a>
+        <p>Outlet:{locality}</p>
       </div>
-      <p>{cuisines.join(",")}</p>
-      <p>Outlet:{locality}</p>
     </div>
   );
 };

@@ -13,6 +13,8 @@ const RestaurantInfoSection = () => {
   const [topicks, setTopicks] = useState([]);
   const [Category, setCategory] = useState([]);
 
+  const [showIndex, setshowIndex] = useState(0);
+
   const { resId } = useParams();
 
   const fetchData = async () => {
@@ -43,6 +45,9 @@ const RestaurantInfoSection = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  function handledisplay(index){
+    setshowIndex(index)
+  }
   if (restInfo === null) return <Shimmer />;
 
   return (
@@ -66,7 +71,7 @@ const RestaurantInfoSection = () => {
       )}
      <div className="">
   {Category.map((list, index) => (
-    <ItemCategory key={index} data={list.card.card}/>
+    <ItemCategory key={index} data={list.card.card} showItems={index===showIndex?true:false}  setshowIndex={()=>setshowIndex(index)}/>
   ))}
 </div>
 

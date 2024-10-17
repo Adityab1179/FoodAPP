@@ -4,7 +4,7 @@ import play_store from "../utils/mockImages/play_store.avif";
 import RBG from "../utils/mockImages/RBG_Logo_72ppi.png";
 const Mainfooter = () => {
   return (
-    <div className="w-full pb-10">
+    <div className="w-full pb-10 px-[12%]">
       <div className="w-4/5 flex justify-between py-5">
         <div>
           <h1 className="text-2xl">For better experience,download the Swiggy app now</h1>

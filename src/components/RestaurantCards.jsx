@@ -1,4 +1,6 @@
 import { CDN_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 const RestaurantCards = (props) => {
   const { resdata } = props;
   const {
@@ -9,6 +11,7 @@ const RestaurantCards = (props) => {
     lastMileTravelString,
     cloudinaryImageId,
   } = resdata?.info
+  const data=useContext(UserContext)
   return (
     <div className="overflow-hidden w-[15rem] min-h-[12rem] hover:scale-90 transition-transform duration-500 font-figtre pb-5">
   <img src={CDN_URL + cloudinaryImageId} className="w-full h-40 object-cover rounded-xl" />

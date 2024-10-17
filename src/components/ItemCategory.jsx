@@ -1,21 +1,19 @@
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const ItemCategory = ({ data }) => {
-  console.log(data)
-  const[showList,setShowList]=useState(false);
-  function handledisplay(){
-    setShowList(!showList);
-  }
+const ItemCategory = ({ data,showItems,setshowIndex}) => {
+function handledisplay(){
+  setshowIndex();
+}
   return (
     <div className="p-2">
       <div className=" p-4 cursor-pointer"> 
-        <div className="flex justify-between" onClick={handledisplay}>
+        <div className="flex justify-between shadow-gray-300 shadow-md p-4" onClick={handledisplay} >
           <span className="text-lg font-extrabold">{data.title}({data.itemCards.length}) </span>
           <span>🔽</span>
         </div>
         <div>
-          {showList&&<ItemList  data={data.itemCards} />}
+          {showItems&&<ItemList  data={data.itemCards} />}
         </div>
       </div>
     </div>

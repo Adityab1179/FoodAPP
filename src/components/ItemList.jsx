@@ -2,6 +2,7 @@ import React from "react";
 import { CDN_URL } from "../utils/constants";
 
 const ItemList = ({ data }) => {
+  console.log(data)
   return (
     <div>
       {data.map((item) => (
@@ -11,7 +12,7 @@ const ItemList = ({ data }) => {
         >
           <div className="w-9/12 p-4">
             <h1 className="font-bold text-xl">{item.card.info.name}</h1>
-            <h2>₹ {item.card.info.price / 100}</h2>
+            <h2>₹ {item.card.info.price / 100||item.card.info.defaultPrice / 100}</h2>
             <p className="text-s">
               {item.card.info.description.split(" ").slice(0, 20).join(" ")}
               {item.card.info.description.split(" ").length > 20 && " ..."}

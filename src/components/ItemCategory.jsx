@@ -1,5 +1,4 @@
 import ItemList from "./ItemList";
-import { useState } from "react";
 
 const ItemCategory = ({ data,showItems,setshowIndex}) => {
 function handledisplay(){

@@ -5,13 +5,13 @@ import BannerSection from "./Bannersection";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { WithPRomoted } from "./RestaurantCards";
 
 const Restaurants = () => {
   const [restdata, setRestdata] = useState([]); // Initialize as an empty array
   const [filteredrest, setFilteredRest] = useState([]); // Initialize as an empty array
   const [searchbox, setSearchbox] = useState("");
   const [userInput, setUserInput] = useState(""); // State for user input
-
   const { LoggedInUser, setUserName } = useContext(UserContext);
 
   // Function to filter top-rated restaurants
@@ -59,6 +59,7 @@ const Restaurants = () => {
     setFilteredRest(filteredData);
   };
 
+  const Withpromoted=WithPRomoted(RestaurantCards);
   const online = useOnlineStatus();
   if (!online) {
     return <div>You are offline, please check your internet connection</div>;
@@ -84,8 +85,8 @@ const Restaurants = () => {
               className="outline"
               type="text"
               placeholder="Set Username"
-              value={userInput} // Initial value comes from LoggedInUser
-              onChange={(e) => setUserInput(e.target.value)} // Update userInput state
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
             />
             <button onClick={handleUsernameUpdate}>Update User</button>
           </div>

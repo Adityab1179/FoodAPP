@@ -10,6 +10,7 @@ import Applogo from "./Applogo";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { useSelector } from "react-redux";
 const Header = () => {
   const [loginbtn, setloginbtn] = useState("login");
   const toggleLogin = () => {
@@ -18,7 +19,9 @@ const Header = () => {
     );
   };
 
+  const cartItems=useSelector((store)=>store.cart.items)
   const online=useOnlineStatus();
+  console.log(cartItems);
   return (
     <nav className="h-24 flex justify-between items-center px-6 shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
       <Applogo />
@@ -47,7 +50,7 @@ const Header = () => {
         <li>
           <Link to={"/cart"}>
             <FontAwesomeIcon icon={faShoppingCart} className="icon" />
-            Cart
+            Cart({cartItems.length})
           </Link>
         </li>
         <button className="loginbtn" onClick={toggleLogin}>
